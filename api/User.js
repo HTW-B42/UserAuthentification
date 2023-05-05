@@ -11,11 +11,11 @@ const bcrypt = require('bcrypt');
 router.post('/signup', (req, res) => {
     let {name, email, password} = req.body;
 
-    console.log('Request Headers:', req.headers);
-    console.log('Request Body:', req.body);
-    console.log('Name:', name);
-    console.log('Email:', email);
-    console.log('Password:', password);
+    //console.log('Request Headers:', req.headers);
+    //console.log('Request Body:', req.body);
+    //console.log('Name:', name);
+    //console.log('Email:', email);
+    //console.log('Password:', password);
 
 
     name = name.trim();
