@@ -9,22 +9,22 @@ const bcrypt = require('bcrypt');
 
 // Signup
 router.post('/signup', (req, res) => {
-    let {name, email, password, dateOfBirth} = req.body;
+    let {name, email, password} = req.body;
 
     console.log('Request Headers:', req.headers);
     console.log('Request Body:', req.body);
     console.log('Name:', name);
     console.log('Email:', email);
     console.log('Password:', password);
-    console.log('Date of Birth:', dateOfBirth);
+
 
     name = name.trim();
     email = email.trim();
     password = password.trim();
-    dateOfBirth = dateOfBirth.trim();
 
 
-    if(name == "" || email == "" || password == "" || dateOfBirth == "") {
+
+    if(name == "" || email == "" || password == "") {
         res.json({
             status: "FAILED",
             message: "Empty input fields!"
@@ -38,11 +38,6 @@ router.post('/signup', (req, res) => {
         res.json({
             status: "FAILED",
             message: "Invalid email entered"
-        })
-    }else if (new Date(dateOfBirth).getTime()) {
-        res.json({
-            status: "FAILED",
-            message: "Invalid date of birth entered"
         })
     }else if (password.length < 8) {
         res.json({
@@ -68,7 +63,6 @@ router.post('/signup', (req, res) => {
                         name,
                         email,
                         password: hashedPassword,
-                        dateOfBirth
                     });
 
                     newUser.save().then(result => {
